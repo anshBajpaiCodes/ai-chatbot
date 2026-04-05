@@ -1,2 +1,4 @@
 .env
+chat.db
 chat_history.json
+app1.py
