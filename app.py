@@ -1,15 +1,28 @@
-# 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
 
+from dotenv import load_dotenv
 import streamlit as st
 from openai import OpenAI
 import json
 import os
 
+
+
+
+load_dotenv()
+
+
+
 # Setup client
 client = OpenAI(
-    api_key="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",  # ⚠️ new key use kar
-    base_url="https://openrouter.ai/api/v1"
+    api_key=os.getenv("OPENROUTER_API_KEY"),
+    base_url="https://openrouter.ai/api/v1",
 )
+
+
+
+
+
+
 
 st.set_page_config(page_title="Ansh GPT", page_icon="🤖")
 st.title("🤖 Ansh GPT")
@@ -78,7 +91,7 @@ if prompt := st.chat_input("Type your message..."):
     with st.chat_message("assistant"):
         with st.spinner("Thinking..."):
             response = client.chat.completions.create(
-                model="openai/gpt-3.5-turbo",
+                model="openai/gpt-4o-mini",
                 messages=st.session_state.messages,
                 extra_headers={
                     "HTTP-Referer": "http://localhost:8501",
